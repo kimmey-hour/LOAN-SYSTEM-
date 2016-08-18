@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org" 
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <title>Error 401</title>
+
+    <!-- Materialize CSS  -->
+    <link th:href="@{/static/css/materialize.css}" type="text/css" rel="stylesheet">
+  
+    <!-- Custom Css -->
+    <link th:href="@{/static/css/style.css}" type="text/css" rel="stylesheet">
+    
+    <!-- Font Awesome Css -->
+    <link th:href="@{/static/css/font-awesome.min.css}" type="text/css" rel="stylesheet">
+    
+    <!-- Slider Css -->
+    <link th:href="@{/static/css/pgwslider.css}" type="text/css" rel="stylesheet">
+    <link rel='stylesheet' id='camera-css' th:href="@{/static/css/camera.css}" type='text/css' media='all'>
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+   
+</head>
+    <body>
+        <!-- Header -->
+        <header class="header-fix">
+            <!-- Header Top Display In large and Tablet Device -->
+            <div class="header-top hide-on-small-only">
+                <div class="container">
+                    <div class="row">
+                        <div class="col l4 col m5 col s12">
+                            <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>
+                            <!-- Dropdown -->
+                            <div class="header-dropdown">
+                                <!-- Dropdown Trigger -->
+                                <a class='dropdown-button btn' data-beloworigin="true" href='#' data-activates='dropdown'>Today <i class="mdi-navigation-arrow-drop-down"></i></a>
+                                <!-- Dropdown Structure -->
+                                <ul id='dropdown' class='dropdown-content'>
+                                  <li><a href="javascript:void(0);">Today</a></li>
+                                  <li><a href="javascript:void(0);">Yesterday</a></li>
+                                  <li><a href="javascript:void(0);">1 Week</a></li>
+                                  <li><a href="javascript:void(0);">1 Month</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col l4 col m3 col s12">
+                            <!-- Logo -->
+                            <div class="logo">
+                                <a href="index-1.htm"><img src="images\material-logo.png" alt="Logo"></a>
+                            </div>
+                        </div>
+                        <div class="col l4 col m4 col s12 pull-right">
+                            <!-- Search Button -->
+                            <div class="searchbox1">
+                                <!-- <input type="text" placeholder="Type and Press Enter" name="search" class="searchbox-input" required="">
+                                <input type="submit" class="searchbox-submit"> -->
+                                <a href="http://www.knongdai.com/" target="_blank"><span class="searchbox-icon"><i class="mdi-action-search"></i></span></a>
+                            </div>
+                            <!-- LogIn Link -->
+                            <a href="login.htm" class="right login">Login</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Header top Display On Mobile -->
+            <div class="header hide-on-med-and-up">
+	              <div class="top-header">
+	                    <div class="container">
+	                        <div class="row">
+	                            <div class="col l4 col m5 col s2">
+	                                <a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="mdi-navigation-menu"></i></a>
+	                            </div>
+	                            <div class="col l4 col m4 col s5">    
+	                                <!-- Dropdown -->
+	                                <div class="header-dropdown">
+	                                    <!-- Dropdown Trigger -->
+	                                    <a class='dropdown-button btn' data-beloworigin="true" href='#' data-activates='dropdown-mobile'>Today <i class="mdi-navigation-arrow-drop-down"></i></a>
+	                                    <!-- Dropdown Structure -->
+	                                    <ul id='dropdown-mobile' class='dropdown-content'>
+	                                      <li><a href="javascript:void(0);">Today</a></li>
+	                                      <li><a href="javascript:void(0);">Yesterday</a></li>
+	                                      <li><a href="javascript:void(0);">1 Week</a></li>
+	                                      <li><a href="javascript:void(0);">1 Month</a></li>
+	                                    </ul>
+	                                </div>
+	                            </div>
+	                            <div class="col l4 col m4 col s3">
+	                                <!-- LogIn Link -->
+	                                <a href="login.htm" class="login">Login</a>
+	                            </div>
+	                            
+	                            <div class="preloader-wrapper small active">
+	    
+	                            
+	                            <div class="col l4 col m4 col s2">
+	                            <!-- Search Button -->
+	                                <form class="searchbox">
+	                                    <input type="text" placeholder="Type and Press Enter" name="search" class="searchbox-input" required="">
+	                                    <input type="submit" class="searchbox-submit">
+	                                    <span class="searchbox-icon"><i class="mdi-action-search"></i></span>
+	                                </form>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="bottom-header">
+	                    <div class="container">
+	                        <div class="row">
+	                            <div class="col l4 col m4 col s12">
+	                                <!-- Logo -->
+	                                <div class="logo">
+	                                    <a href="index-1.htm"><img src="images\material-logo.png" alt="Logo"></a>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+            </div>
+           
+            <!-- Navigation -->
+            <nav role="navigation" class="hide-on-small-only">
+                <div class="nav-wrapper menu-category">
+                    <ul>
+                        <li>
+                            <ul class="news-category-dropdown">
+                                <li><a href="javascript:void(0);">Home Page <i class="fa fa-angle-down"></i></a>
+                                    <ul>
+                                        <li><a href="index-1.htm">Home Page 1</a></li>
+                                        <li><a href="index2.htm">Home Page 2</a></li>
+                                        <li><a href="index3.htm">Home Page 3</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul class="news-category-dropdown">
+                                <li><a href="javascript:void(0);">Home Page  <i class="fa fa-angle-down"></i></a>
+                                    <ul>
+                                        <li><a href="news-single1.htm">News Detail 1</a></li>
+                                        <li><a href="news-single2.htm">News Detail 2</a></li>
+                                        <li><a href="news-single3.htm">News Detail 3</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul class="news-category-dropdown">
+                                <li><a href="javascript:void(0);">Home Page  <i class="fa fa-angle-down"></i></a>
+                                    <ul>
+                                        <li><a href="index-sport.htm">Sports</a></li>
+                                        <li><a href="index-life.htm">Life</a></li>
+                                        <li><a href="index-travel.htm">Travel</a></li>
+                                        <li><a href="index-money.htm">Money</a></li>
+                                        <li><a href="index-tech.htm">Tech</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul class="news-category-dropdown">
+                                <li><a href="javascript:void(0);">Home Page <i class="fa fa-angle-down"></i></a>
+                                    <ul>
+                                        <li><a href="profile.htm">Profile</a></li>
+                                        <li><a href="brand1.htm">Brand Style 1</a></li>
+                                        <li><a href="brand2.htm">Brand Style 2</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul class="news-category-dropdown">
+                                <li><a href="javascript:void(0);">Home Page  <i class="fa fa-angle-down"></i></a>
+                                    <ul>
+                                        <li><a href="shop.htm">Shop Page</a></li>
+                                        <li><a href="catalog.htm">Catalog</a></li>
+                                        <li><a href="product-detail.htm">Product Detail</a></li>
+                                        <li><a href="shopping-cart.htm">Shopping Cart</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="about.htm">About</a></li>
+                       
+                        
+                    </ul>
+                    
+                    
+                     
+                </div>
+                
+               
+
+            </nav>
+        </header>
+        
+        <!-- Sidebar Navigation -->
+        <ul id="slide-out" class="side-nav full">
+            <li class="logo-title"><a href="javascript:void(0);">Material News</a></li>
+            <!-- Dropdown Menu -->
+            <li class="dropdown-menu">
+                <ul class="collapsible" data-collapsible="expandable">
+                    <li class="">
+                        <div class="collapsible-header waves-effect waves"><i class="fa fa-file"></i> Home Page <i class="fa fa-angle-right"></i></div>
+                        <div style="display: none;" class="collapsible-body">
+                            <ul>
+                                <li class="waves-effect"><a href="index-1.htm"><i class="fa fa-angle-right"></i> Home Page 1</a></li>
+                                <li class="waves-effect"><a href="index2.htm"><i class="fa fa-angle-right"></i> Home Page 2</a></li>
+                                <li class="waves-effect"><a href="index3.htm"><i class="fa fa-angle-right"></i> Home Page 3</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="">
+                        <div class="collapsible-header waves-effect waves"><i class="fa fa-file-text"></i> News Detail<i class="fa fa-angle-right"></i></div>
+                        <div style="display: none;" class="collapsible-body">
+                            <ul>
+                                <li class="waves-effect"><a href="news-single1.htm"><i class="fa fa-angle-right"></i> News Detail 1</a></li>
+                                <li class="waves-effect"><a href="news-single2.htm"><i class="fa fa-angle-right"></i> News Detail 2</a></li>
+                                <li class="waves-effect"><a href="news-single3.htm"><i class="fa fa-angle-right"></i> News Detail 3</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="">
+                        <div class="collapsible-header waves-effect waves"><i class="fa fa-file-text"></i> Category <i class="fa fa-angle-right"></i></div>
+                        <div style="display: none;" class="collapsible-body">
+                            <ul>
+                                <li class="waves-effect"><a href="index-sport.htm"><i class="fa fa-angle-right"></i> Sport </a></li>
+                                <li class="waves-effect"><a href="index-life.htm"><i class="fa fa-angle-right"></i> Life </a></li>
+                                <li class="waves-effect"><a href="index-travel.htm"><i class="fa fa-angle-right"></i> Travel </a></li>
+                                <li class="waves-effect"><a href="index-money.htm"><i class="fa fa-angle-right"></i> Money </a></li>
+                                <li class="waves-effect"><a href="index-tech.htm"><i class="fa fa-angle-right"></i> Tech  </a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li class="waves-effect"><a href="shop.htm"><i class="fa fa-tag"></i>Shop</a></li>
+            <li class="waves-effect"><a href="catalog.htm"><i class="fa fa-briefcase"></i>Catalog</a></li>
+            <li class="waves-effect"><a href="product-detail.htm"><i class="fa fa-plus-square"></i>product Detail</a></li>
+            <li class="waves-effect"><a href="shopping-cart.htm"><i class="fa fa-shopping-cart"></i>Shopping Cart</a></li>
+            <li class="waves-effect"><a href="profile.htm"><i class="fa fa-user"></i>Profile</a></li>
+            <li class="waves-effect"><a href="brand1.htm"><i class="fa fa-rocket"></i>Brand Style 1</a></li>
+            <li class="waves-effect"><a href="brand2.htm"><i class="fa fa-plane"></i>Brand Style 2</a></li>
+            <li class="waves-effect"><a href="about.htm"><i class="fa fa-users"></i>About</a></li>
+            <li class="waves-effect"><a href="contact1.htm"><i class="fa fa-phone"></i>Contact Style 1</a></li>
+            <li class="waves-effect"><a href="contact2.htm"><i class="fa fa-map-marker"></i>Contact Style 2</a></li>
+            <li class="waves-effect active"><a href="login.htm"><i class="fa fa-lock"></i>Login</a></li>
+        </ul>
+      
+        <!-- Main Wrapper -->
+        <div class="wrapper grey-background margin-top">
+            <div class="container">
+                
+                
+                <div class="row">
+                    <div class="col l12 col m12 col s12">
+                        <div class="login-page z-depth-1">
+                            <div class="col l4 col m6 col s12 offset-l4 offset-m3">
+                            
+                            
+                                <div class="login-title"><h3>Error 404 Page Not found.</h3></div>
+                                
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+      
+      
+        <!-- Footer -->
+        <footer class="page-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col l12 col m12 col s12">
+                        <!-- Footer Button -->
+                        <div class="footer-button center-align">
+                            <span class="mdi-action-history"></span>
+                        </div>
+                    </div>
+  
+                    <div class="col l12 col m12 col s12">
+                        <!-- Footer Column 1 -->
+                        <ul>
+                            <li class="footer-title">News</li>
+                            <li>
+                                <a href="javascript:void(0);">Nation</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">World</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Washington</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Elections</a>
+                            </li>
+                        </ul>
+                        
+                        <!-- Footer Column 2 -->
+                        <ul>
+                            <li class="footer-title">Sport</li>
+                            <li>
+                                <a href="javascript:void(0);">NFL</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">MLB</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">NBA</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">NHL</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">NCAAF</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">NCAAB</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">More</a>
+                            </li>
+                        </ul>
+                        
+                        <!-- Footer Column 3 -->
+                        <ul>
+                            <li class="footer-title">Life</li>
+                            <li>
+                                <a href="javascript:void(0);">People</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Movies</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Music</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">TV</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Books</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Entertain This</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">We to Watch</a>
+                            </li>
+                        </ul>
+                        
+                        <!-- Footer Column 4 -->
+                        <ul>
+                            <li class="footer-title">Money</li>
+                            <li>
+                                <a href="javascript:void(0);">Market</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Business</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Personal Finance</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Cars</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Careers</a>
+                            </li>
+                        </ul>
+                        
+                        <!-- Footer Column 5 -->
+                        <ul>
+                            <li class="footer-title">Tech</li>
+                            <li>
+                                <a href="javascript:void(0);">Personal Tech</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Gaming</a>
+                            </li>
+                        </ul>
+                        
+                        <!-- Footer Column 6 -->
+                        <ul>
+                            <li class="footer-title">Travel</li>
+                            <li>
+                                <a href="javascript:void(0);">Travel Advice</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Experience Travel</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Destinations</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Flights</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Cruises</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Deals</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Videos</a>
+                            </li>
+                        </ul>
+                        
+                        <!-- Footer Column 7 -->
+                        <ul>
+                            <li class="footer-title">Option</li>
+                            <li>
+                                <a href="javascript:void(0);">Cartoons</a>
+                            </li>
+                        </ul>
+                        
+                        <!-- Footer Column 8 -->
+                        <ul>
+                            <li class="footer-title">Weather</li>
+                            <li>
+                                <a href="javascript:void(0);">Hurricans</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Climate</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Footer Logo -->
+                <div class="logo">
+                    <a href="index-1.htm"><img src="images\material-logo.png" alt="Logo"></a>
+                </div>
+            </div>
+            <!-- Footer Bottom -->
+            <div class="footer-copyright">
+                <div class="container">
+                    <div class="row">
+                    <!-- Copyright Text -->
+                    <div class="col l4 col m12 col s12">
+                        &copy; Copyright 2015 Material News by ThemeLeague
+                    </div>
+                    <div class="col l4 col m12 col s12">
+                        <!-- Social Icon -->
+                        <div class="social-icon">
+                            <a href="javascript:void(0);"><i class="fa fa-facebook"></i></a>
+                            <a href="javascript:void(0);"><i class="fa fa-twitter"></i></a>
+                            <a href="javascript:void(0);"><i class="fa fa-pinterest"></i></a>
+                            <a href="javascript:void(0);"><i class="fa fa-instagram"></i></a>
+                            <a href="javascript:void(0);"><i class="fa fa-youtube"></i></a>
+                            <a href="javascript:void(0);"><i class="fa fa-vine"></i></a>
+                            <a href="javascript:void(0);"><i class="fa fa-linkedin"></i></a>
+                            <a href="javascript:void(0);"><i class="fa fa-google-plus"></i></a>
+                            <a href="javascript:void(0);"><i class="fa fa-rss"></i></a>
+                            <a href="javascript:void(0);"><i class="fa fa-tumblr"></i></a>
+                        </div>
+                    </div>
+                    <div class="col l4 col m12 col s12">
+                        <!-- Footer Menu -->
+                        <div class="footer-menu knong-dai-color">
+                            <ul>
+                                <li>
+                                    <a href="javascript:void(0);" class="knong-dai-color">Privacy</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" class="knong-dai-color">Advertisement</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" class="knong-dai-color">Contact us</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    <!-- Jquery -->
+    <script th:src="@{/static/js/jquery-min.js}"></script>
+    <!-- Materialize JS -->
+    <script th:src="@{/static/js/materialize.js}"></script>
+    <!-- Plugin JS -->
+    <script th:src="@{/static/js/pgwslider.js}"></script>
+    <script type='text/javascript' th:src="@{/static/js/camera.js}"></script>
+    <script th:src="@{/static/js/jquery.touchSwipe.min.js}"></script>
+    <script th:src="@{/static/js/jquery.liquid-slider.js}"></script>
+    <!-- Custom Js -->
+    <script th:src="@{/static/js/init.js}"></script>
+    
+    </body>
+</html>
