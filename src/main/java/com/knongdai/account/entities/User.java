@@ -8,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.knongdai.account.utilities.Encryption;
 
 public class User implements UserDetails {
 	
@@ -17,6 +18,9 @@ public class User implements UserDetails {
 	private static final long serialVersionUID = 1L;
 	@JsonProperty("USER_ID")
 	private int userId;
+	
+	@JsonProperty("ENC_USER_ID")
+	private String encUserId;
 	
 	@JsonProperty("EMAIL")
 	private String email;
@@ -183,6 +187,15 @@ public class User implements UserDetails {
 	}
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
+	}
+	public String getEncUserId() {
+		return Encryption.encode(encUserId);
+	}
+	public void setEncUserId(String encUserId) {
+		this.encUserId = encUserId;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	
 	

@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Configuration
 @EnableWebSecurity
@@ -21,13 +22,17 @@ public class KnongDaiWebSecurityConfiguration extends WebSecurityConfigurerAdapt
 	private AjaxAuthenticationFailureHandler ajaxAuthenticationFailureHandler;
 	
 	@Autowired
+	@Qualifier(value="CustomUserDetailService")
+	private UserDetailsService userDetailsService;
+	
+	@Autowired
 	protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().withUser("admin").password("123").roles("ADMIN");
+		/*auth.inMemoryAuthentication().withUser("admin").password("123").roles("ADMIN");
 		auth.inMemoryAuthentication().withUser("user").password("123").roles("USER");
 		auth.inMemoryAuthentication().withUser("dba").password("123").roles("ADMIN", "USER" , "DBA");
-		auth.inMemoryAuthentication().withUser("dev").password("dev").roles("DEVELOPER");
+		auth.inMemoryAuthentication().withUser("dev").password("dev").roles("DEVELOPER");*/
 
-//		auth.userDetailsService(userDetailService);
+		auth.userDetailsService(userDetailsService);
 //			.passwordEncoder(passwordEncoder());
 		
 	}
@@ -38,7 +43,7 @@ public class KnongDaiWebSecurityConfiguration extends WebSecurityConfigurerAdapt
 			.authorizeRequests()
 			.antMatchers("/" , "/home" , "/about" , "/swagger").permitAll()
 			.antMatchers("/admin/**").hasRole("ADMIN")
-			.antMatchers("/user/**").hasRole("USER")
+			.antMatchers("/user/**").hasAnyRole("SUBSCRIBER","ADMIN")
 			.antMatchers("/dba/**").hasAnyRole("ADMIN","USER" , "DBA");
 			//.antMatchers("/swagger/**").hasAnyRole("ADMIN","USER" , "DBA", "DEVELOPER");
 		http

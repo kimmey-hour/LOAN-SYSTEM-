@@ -1,18 +1,17 @@
 package com.knongdai.account.configuration.security;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
+
+import com.knongdai.account.entities.User;
 
 @Component("ajaxAuthenticationSuccessHandler")
 public class AjaxAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
@@ -20,23 +19,24 @@ public class AjaxAuthenticationSuccessHandler implements AuthenticationSuccessHa
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth)
 			throws IOException, ServletException {
-	
-//			Map<String , Object> map = new HashMap<String , Object>();
-//			map.put("APIUser", getAPIUser());
-//			map.put("targetUrl", determineTargetUrl(auth));
-//			
-//			String json = new Gson().toJson(map);
-			
-			response.getWriter().print(determineTargetUrl(auth));
-	        response.getWriter().flush();
-	        
+
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		User user = (User) authentication.getPrincipal();
+		
+		if (user.isConfirmed() == false) {
+			SecurityContextHolder.getContext().setAuthentication(null);
+		}
+
+		response.getWriter().print(user.getEncUserId());
+		response.getWriter().flush();
+
 	}
-	
+
 	/*
 	 * This method extracts the roles of currently logged-in user and returns
 	 * appropriate URL according to his/her role.
 	 */
-	private String determineTargetUrl(Authentication authentication) {
+	/*private String determineTargetUrl(Authentication authentication) {
 
 		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 
@@ -49,21 +49,21 @@ public class AjaxAuthenticationSuccessHandler implements AuthenticationSuccessHa
 		}
 		if (roles.contains("ROLE_ADMIN")) {
 			return "admin";
-		}else if(roles.contains("ROLE_USER")){
+		} else if (roles.contains("ROLE_USER")) {
 			return "user";
-		}else if(roles.contains("ROLE_DBA")){
+		} else if (roles.contains("ROLE_DBA")) {
 			return "dba";
-		}else{
+		} else {
 			return "accessDenied";
 		}
 
-	}
-	
-	/*// Get API User from HttpSession
-	private APIUser getAPIUser(){
-		Authentication authentication =  SecurityContextHolder.getContext().getAuthentication();
-		APIUser user = (APIUser) authentication.getPrincipal();
-		return user;
 	}*/
+
+	/*
+	 * // Get API User from HttpSession private APIUser getAPIUser(){
+	 * Authentication authentication =
+	 * SecurityContextHolder.getContext().getAuthentication(); APIUser user =
+	 * (APIUser) authentication.getPrincipal(); return user; }
+	 */
 
 }

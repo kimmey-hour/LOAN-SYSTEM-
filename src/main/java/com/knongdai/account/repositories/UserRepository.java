@@ -20,7 +20,7 @@ public interface UserRepository {
 	@Select(UserSQL.R_USER_BY_EMAIL)
 	@Results(value={
 			@Result(property="userId" , column="userid"),
-			@Result(property="email" , column="signup_with"),
+			@Result(property="email" , column="email"),
 			@Result(property="password" , column="password"),
 			@Result(property="username" , column="username"),
 			@Result(property="gender" , column="gender"),
@@ -34,6 +34,7 @@ public interface UserRepository {
 			@Result(property="socialType" , column="sc_type"),
 			@Result(property="isConfirmed" , column="isconfirmed"),
 			@Result(property="signUpWith" , column="signup_with"),
+			@Result(property="encUserId" , column="userid"),
 			@Result(property="roles" , column="userid" ,
 					many = @Many(select = "findRolesByUserId")
 			)

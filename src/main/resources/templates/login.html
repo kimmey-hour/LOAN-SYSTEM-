@@ -263,7 +263,7 @@
                     <div class="col l12 col m12 col s12 center-align">
                         <!-- Breadcrumb -->
                         <div class="breadcrumb">
-                            <a href="#">Home</a> <i class="fa fa-angle-right"></i> Login 
+                            <a href="#">Home</a> <i class="fa fa-angle-right"></i> Login   
                             <div class="page-title"> Sign in </div>
                         </div>
                     </div>
@@ -518,7 +518,10 @@
     <!-- Custom Js -->
     <script th:src="@{/static/js/init.js}"></script>
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+     <script th:src="@{/static/script/knongdai_login.js}"></script>
+    
+    <p style="display: none" id="continueSite" th:text="${continueSite}"></p>
+    
 <script type="text/javascript">
         
         $(function() {
@@ -526,27 +529,30 @@
         	$("#frmLogin").submit(function(e){
        		
        		  e.preventDefault();
-       			console.log(("#frmLogin").serialize());
-       		  $.ajax({
-  	            url: "/login",
-  	            type: "POST",
-  	            data: $("#frmLogin").serialize(),
-  	            success: function(data) {
-  	            	if(data == "User account is locked"){
-  	            		alert(data);
-  	            	}else if(data == "User is disabled"){
-  	            		alert(data);
-  	            	}else if(data == "Bad credentials"){
-  	            		alert(data);
-  	            	}else{
-  	            		alert("Logined success.");
-  	            	}
-  	            	
-  	            },
-  	         	error: function(data){
-  	         		console.log(data);
-  				}
-  	        });
+       		  
+       			console.log( $("#frmLogin").serialize() );
+       		
+	       		$.ajax({
+	  	            url: "/login",
+	  	            type: "POST",
+	  	            data: $("#frmLogin").serialize(),
+	  	            success: function(data) {
+	  	            	if(data == "User account is locked"){
+	  	            		alert(data);
+	  	            	}else if(data == "User is disabled"){
+	  	            		alert(data);
+	  	            	}else if(data == "Bad credentials"){
+	  	            		alert(data);
+	  	            	}else{
+	  	            		setCookie("KNONG_DAI_ID", "TEST")
+	  	            		alert("Logined success. " + data + " " + $("continueSite").text());
+	  	            	}
+	  	            	
+	  	            },
+	  	         	error: function(data){
+	  	         		console.log(data);
+	  				}
+	  	        });
        			
        		});
 	      
@@ -557,6 +563,5 @@
         
         });
         </script>
-    
     </body>
 </html>
